@@ -1,5 +1,3 @@
-local program = "[-]>[-]<>+++++++[<+++++++>-]<+++.--."
-
 local function fillJumpTable(program)
     local result = {}
     local stack = {}
@@ -21,6 +19,14 @@ local function fillJumpTable(program)
     return result
 end
 
+local function loadProgram()
+    local program42 = "[-]>[-]<>+++++++[<+++++++>-]<+++.--."
+    if arg[1] == nil then return program42 end
+    local programFile = io.open(arg[1])
+    return programFile and programFile:read("*a") or program42
+end
+
+local program = loadProgram()
 local jumpTable = fillJumpTable(program)
 
 local instructionCusror = 1
